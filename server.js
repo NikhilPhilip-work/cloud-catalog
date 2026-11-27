@@ -1,4 +1,6 @@
 
+const path = require('path');
+
 const express = require('express');
 
 const app = express();
@@ -8,6 +10,11 @@ const PORT = process.env.PORT || 8080;
 
 // Serve static files from the public folder
 app.use(express.static('public'));
+
+// Homepage route
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 // API 1: Cloud Services
 app.get('/api/services', (req, res) => {
